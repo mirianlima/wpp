@@ -305,10 +305,10 @@ dem_momentum3
 - Strategic sectors: Family Planning, Maternal and Child Health, Education, Women’s Empowerment.
 
 ### The Framework
-![A demographic dividend framework *(Cardona et al, 2020)*](../../docs/dividends_frmwk.jpeg){fig-align="center" width=500}
+![A demographic dividend framework *(Cardona et al, 2020)*](../../assets/dividends_frmwk.jpeg){fig-align="center" width=500}
 
 ### Prosperity Wheel
-![Potential sector-specific programs and interventions *(Cardona et al., 2020)*](../../docs/prosperity_wheel.jpeg){fig-align="center" width=400}
+![Potential sector-specific programs and interventions *(Cardona et al., 2020)*](../../assets/prosperity_wheel.jpeg){fig-align="center" width=400}
 :::
 
 # Conclusion

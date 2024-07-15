@@ -23,7 +23,7 @@ editor_options:
 
 {{< include ../_setup.qmd >}}
 
-<img src="../docs/identifier_color.png" alt="Acronym Logo" style="display: block; margin-left: 0; width: 40%;" />
+<img src="../assets/identifier_color.png" alt="Acronym Logo" style="display: block; margin-left: 0; width: 40%;" />
 
 ::: {.content-visible when-format="html"}
 ::: {.callout-note appearance="simple"}
@@ -157,7 +157,7 @@ old_child_dep_ratios
 #| fig-width: 12
 
 # 9. School-age population evolution
-shool_age_pop
+school_age_pop
 ```
 
 Another channel of economic pressure related to high fertility rates is evident in prevailing job market dynamics for young people. In a high fertility-driven population growth scenario, as the youth cohort grows rapidly, African economies have been struggling to produce decent jobs at comparable rates. This can result in low labor participation rates despite non-negligible job growth rates ^[*[Afrobarometer News Release](https://www.afrobarometer.org/wp-content/uploads/2023/11/News-release_Africas-youth-more-educated-less-employed-less-engaged-Afrobarometer-16Nov2023-.pdf) (November 2023)*]. In fact, between 2024 and 2060, Africa's working-age population is projected to increase by about <b>`r dc |> pull(change) |> round()` percent</b>, equating to roughly <b>`r dc |> pull(diff) |> round()` million people</b>. According to the [Africa Competitiveness Report 2017](https://documents.worldbank.org/en/publication/documents-reports/documentdetail/733321493793700840/the-africa-competitiveness-report-2017), countries that implement job-creating policies stand to benefit significantly from this demographic surge. Conversely, the report cautions that nations unable to adopt these measures may face demographic challenges, including high levels of youth unemployment and underemployment.
@@ -257,9 +257,9 @@ The "wheel of prosperity" further elaborates on specific programs and interventi
 ## Demographic dividend framework diagrams
 
 ::: {layout-nrow=2}
-![A demographic dividend framework *(Cardona et al, 2020)*](../docs/dividends_frmwk.jpeg){fig-align="center" width=700}
+![A demographic dividend framework *(Cardona et al, 2020)*](../assets/dividends_frmwk.jpeg){fig-align="center" width=700}
 
-![Potential sector-specific programs and interventions *(Cardona et al., 2020)*](../docs/prosperity_wheel.jpeg){fig-align="center" width=600}
+![Potential sector-specific programs and interventions *(Cardona et al., 2020)*](../assets/prosperity_wheel.jpeg){fig-align="center" width=600}
 :::
 
 ::::
@@ -271,9 +271,9 @@ The "wheel of prosperity" further elaborates on specific programs and interventi
 ::: {.content-visible unless-format="html"}
 ## Demographic dividend framework diagrams
 
-![A demographic dividend framework *(Cardona et al, 2020)*](../docs/dividends_frmwk.jpeg){fig-align="center" width=500}
+![A demographic dividend framework *(Cardona et al, 2020)*](../assets/dividends_frmwk.jpeg){fig-align="center" width=500}
 
-![Potential sector-specific programs and interventions *(Cardona et al., 2020)*](../docs/prosperity_wheel.jpeg){fig-align="center" width=400}
+![Potential sector-specific programs and interventions *(Cardona et al., 2020)*](../assets/prosperity_wheel.jpeg){fig-align="center" width=400}
 :::
 
 # Conclusion

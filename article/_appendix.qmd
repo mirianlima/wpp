@@ -14,10 +14,10 @@ tfr_regions_boxplots
 # 15. Working-age population size chanpions VS TFR champions
 
 # Working-age population size champions
-twa_size_chanprions
+twa_size_champions
 
 # TFR champions
-twa_tfr_chanpions
+twa_tfr_champions
 ```
 
 ### Regions & Africa's Subregions Total Working-Age Distributions

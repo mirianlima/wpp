@@ -2,9 +2,6 @@ project:
   type: website
   output-dir: docs
 
-filters:
-  - shinylive
-
 website:
   title: "Fertility and Fiscal Space"
   favicon: assets/osaa_logo_orange.png

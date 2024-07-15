@@ -6,7 +6,7 @@ format: html
 <style>
   
   #quarto-content {
-    background: url('docs/cover.jpg') no-repeat center center;
+    background: url('assets/cover.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh; /* Full height */
     display: flex;
