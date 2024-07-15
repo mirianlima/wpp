@@ -1,0 +1,7 @@
+---
+format:
+  html:
+    page-layout: custom
+---
+
+ <iframe id="example1" src="https://mlima.shinyapps.io/shinyapp/" style="border: none; width: 100%; height: 630px;" frameborder="0"></iframe>

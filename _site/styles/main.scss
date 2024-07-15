@@ -1,0 +1,15 @@
+/*-- scss:rules --*/
+
+/* Styles specifically for the h1 tag with class 'title' */
+#title-block-header .quarto-title .quarto-title-block .title {
+  text-align: right;
+  border-right: 2px solid white ;
+  padding-right: 12px;
+  margin-right: 12px;
+}
+
+div.callout-note.callout {
+    border-left-color: #f58220;
+    color: '#CCCCCC';
+}
+

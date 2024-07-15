@@ -1,0 +1,70 @@
+---
+title: " "
+format: html
+---
+
+<style>
+  
+  #quarto-content {
+    background: url('docs/cover.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh; /* Full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .main-title {
+    font-size: 5.4em;
+    line-height: 0.9;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white; /* Text color */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for better visibility */
+  }
+  
+  .subtitle {
+      font-size: 1.7em;
+      color: white; /* Text color */
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Shadow for better visibility */
+      max-width: 1000px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+  .enter-button {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0px;
+    padding: 1.7em 4em;
+    background-color: #f58220;
+    color: #f9f7e8;
+    font-size: 0.8em;
+    line-height: 1.1em;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .enter-button:hover {
+    background: #00332e; /* Darken the button on hover */
+  }
+  
+</style>
+
+<div>
+  <div class="main-title">The Fertility Factor</div>
+  <div class="subtitle">Gender Equity as a Catalyst for Economic Transformation in Africa</div>
+  <!-- <button href="#article.html" class="enter-button">Enter</button> -->
+</div>
+
+  

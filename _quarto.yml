@@ -1,0 +1,40 @@
+project: 
+  type: website
+
+filters:
+  - shinylive
+
+website:
+  title: "Fertility and Fiscal Space"
+  favicon: assets/osaa_logo_orange.png
+  navbar:
+    title: FALSE
+    logo: assets/osaa_logo_white.png
+    right:
+      - href: index.qmd
+        text: Home
+      - href: briefing/briefing.qmd
+        text: Briefing
+      - href: article/article.qmd
+        text: Brief
+      - href: dashboard/dashboard.qmd
+        text: Dashboard
+      - href: explorer/explorer.qmd
+        text: Explorer
+      - text: "Appendix"
+        menu: 
+          - href: appendix/eda_report.qmd
+            text: "EDA Report"
+          - href: appendix/data_yprofile.qmd
+            text: "Data Profile"
+          - href: appendix/data_table.qmd
+            text: "Data Table"
+      
+format:
+  html:
+    fontsize: 1.1em
+    theme: 
+      - flatly
+      - styles/main.scss
+    toc: true
+

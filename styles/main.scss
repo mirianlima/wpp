@@ -1,0 +1,47 @@
+/*-- scss:defaults --*/
+$primary:   #009ad9 !default;
+$secondary: #f58220 !default;
+$success:   #56b182 !default;
+$info:      #3f6189 !default;
+$warning:   #fbd749 !default;
+
+/*-- scss:rules --*/
+
+.navbar {
+  max-height: 55px !important;
+  font-size: 1rem;
+}
+
+.nav-tabs .nav-item .nav-link {
+  color: #3f6189;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+  background-color: #E6E6E6;
+  border: 1px solid white;
+}
+
+.navbar-logo {
+  height: 35px !important;
+  width: 180px !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+
+/* Styles specifically for the h1 tag with class 'title' */
+#title-block-header .quarto-title .quarto-title-block .title {
+  text-align: right;
+  border-right: 2px solid white ;
+  padding-right: 12px;
+  margin-right: 12px;
+}
+
+div.callout-note.callout {
+    border-left-color: #f58220;
+    color: #CCCCCC;
+}
+
+.momentum {
+  background:#CCCCCC;
+}
+

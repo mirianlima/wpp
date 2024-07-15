@@ -1,0 +1,6 @@
+---
+format:
+  html:
+    page-layout: full
+---
+<iframe style="overflow:hidden;margin:0px;height:110%;width:110%;padding:0;position: relative" src="output_explore.html" height="110%" width="110%"></iframe>

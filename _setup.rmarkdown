@@ -1,0 +1,104 @@
+```{r packages}
+#| include: false
+# pacman::p_load(
+#   tidyverse,
+#   here,
+#   ggiraph,
+#   data.table,
+#   extrafont,
+#   ggtext,
+#   geomtextpath,
+#   scales,
+#   owidR,
+#   patchwork,
+#   tidytext,
+#   ggridges,
+#   ggrepel,
+#   ggcharts
+# )
+
+# Centralized package loading
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(
+  data.table, extrafont, geomtextpath, ggcharts, ggiraph, ggrepel, ggridges,
+  ggtext, here, owidR, patchwork, scales, tidytext, tidyverse, rmarkdown,
+  cleaner, janitor, pointblank, purrr, DataExplorer, dlookr, DT, ggstatsplot,
+  SmartEDA, broom, grid, gridExtra, gtExtras, hexbin, modelsummary, rlang,
+  tidymodels, bsicons, bslib, htmltools, showtext
+)
+```
+
+```{r data}
+#| include: false
+#| cache: true
+
+# Function to load CSV files
+load_csv <- function(dir, file_path) {
+  fread(here("data", dir, file_path))
+}
+
+# Load WPP processed data
+wpp <- list(
+  countries = load_csv("processed", "c_dem.csv"),
+  agg_age1 = load_csv("processed", "a_age1.csv"),
+  world = load_csv("processed", "a_dem.csv") |> filter(loc_type_id==1),
+  regions = load_csv("processed", "a_dem.csv") |> filter(loc_type_id==2),
+  subregions = load_csv("processed", "a_dem.csv") |> filter(loc_type_id==3), 
+  africa = load_csv("processed", "a_dem.csv") |> filter(loc_type_id==3, location=="Africa")
+)
+
+# Type setting
+agg_types <- function(df){
+  df |> 
+    mutate(
+      across(where(is.numeric), round, 2),
+      across(c(loc_type_id, loc_type_name, parent_id, parent_name, location), as.factor)
+    )
+}
+
+country_types <- function(df){
+  df |>
+    mutate(
+      across(where(is.numeric), round, 2),
+      across(c(region, region_int, ldc, lldc, sids, income, lending), as.factor)
+    )
+}
+
+wpp$countries <- wpp$countries |> country_types()
+wpp <- imap( wpp, ~if(.y != "countries") agg_types(.x) else .x ) # apply function to list of dfs if it is not the countries' data
+
+# OWID long run population growth data
+owid <- load_csv("processed", "owid.csv")
+```
+
+```{r helpers}
+#| include: false
+#loadfonts(device = "pdf") # for PDF output
+
+# Pop world function
+pop_world <- function(year=2024,data=wpp$world){
+  pop <- data |> 
+    filter(time == year)  |> 
+    pull(t_population1july)
+  
+  return(round(pop*0.000001,1)) 
+}
+
+# Africa's working-age diff 2024-2060
+dc <- wpp$regions |>
+  filter(location=="Africa", time %in% c(2024, 2060)) |>
+  select(time, total_working_age) |> 
+  arrange(time)  |>
+  mutate(
+      diff=total_working_age-lag(total_working_age),
+      change=(diff/total_working_age[2])*100,
+      diff = diff*1000/1e06) |> 
+  filter(!is.na(diff)) |> 
+  select(diff, change)
+```
+
+```{r plots}
+#| include: false
+source(here("scripts/plots.R"))
+```
+

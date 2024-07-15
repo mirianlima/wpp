@@ -1,0 +1,343 @@
+---
+title: "Fertility & Fiscal Space"
+subtitle: "Gender Equity as a Catalyst for<br>Economic Transformation in Africa"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: osaa_logo_white.png
+    theme: [moon, briefing.scss]
+    footer: <https://www.un.org/osaa/>
+---
+
+```{r local_packages}
+#| include: false
+pacman::p_load(
+  bslib,
+  bsicons
+)
+```
+
+{{< include ../../_setup.qmd >}}
+
+# Introduction
+
+## World Population Dynamics
+
+::: {.panel-tabset}
+
+### Insights
+- Human history shaped by population dynamics.
+- Population explosion post-Industrial Revolution.
+- Surge from 6.1 billion (2000) to 8.1 billion (2024).
+- Underlying trend: declining fertility rates globally.
+
+### World Stats
+```{r}
+#| layout-ncol: 2
+value_box(
+  title = "2000 World Population",
+  value = paste(pop_world(year=2000), " Billions"),
+  showcase = bs_icon("globe-europe-africa"),
+  theme = value_box_theme(bg = "#002B36", fg = '#f58220'),
+  max_height="300px"
+)
+  
+value_box(
+  title = "2024 World Population",
+  value = paste(pop_world(), " Billions"),
+  showcase = bs_icon("globe-central-south-asia"),
+  theme = value_box_theme(bg = "#002B36", fg = '#f58220'),
+  max_height="300px"
+)
+```
+
+### Long Run Growth
+```{r}
+#| label: world-pop-pdf1
+#| fig-align: center
+
+# 1. Long Run Population Growth (OWID)
+world_long_run_owid
+```
+:::
+
+## Population Forecast {.scrollable}
+
+::: {.panel-tabset}
+
+### Insights
+- UN forecasts peak population over 10.3 billion by century's end.
+- Declining growth rates despite rising total numbers.
+- The dynamics of TFR, population growth & replacement level (2.1).
+
+### Peak Population
+```{r}
+#| label: world-pop-pdf2
+#| fig-align: center
+
+# 2. Population Size Evolution
+world_pop_size
+```
+
+### Declining Fertility
+```{r}
+#| label: fertility-rates-decline
+#| fig-align: center
+
+# 3. Fertility Rates
+fertility_rates_decline
+```
+:::
+
+### Regional TFR
+```{r}
+#| label: cum-tfr-regions-subregions-html1
+#| fig-align: center
+
+# 12. TFR Cumulative Plots: Regions
+cum_tfr_regions
+```
+
+### Sub-regions TFR
+```{r}
+#| label: cum-tfr-regions-subregions-html2
+#| fig-align: center
+
+# 12. TFR Cumulative Plots: Regions
+cum_tfr_regions
+```
+
+# Africa: The High-Fertility Driven Demographic Dividend Paradox 
+
+## Demographic Composition {.scrollable}
+
+::: {.panel-tabset}
+
+### Insights
+- Demographic dividend is a (short) window of opportunity
+- Age distribution define the priorities for public policy planning
+
+### Doubling by 2060
+```{r}
+#| label: africa-double-tfr-html1
+#| fig-align: center
+
+# 4. Africa Doubling Population
+africa_double_2060
+```
+
+### With declining fertility
+```{r}
+#| label: africa-double-tfr-html2
+#| fig-align: center
+
+# 5. Declining Fertility Convergence
+africa_tfr_decline
+```
+
+### Old vs child dependency
+```{r}
+#| label: old-child-dep-ratios
+#| fig-align: center
+
+# 8. Old-age VS child dependency ratios
+old_child_dep_ratios
+```
+
+### Note
+
+**Demographic Composition Conditions Policy Planning**
+
+> *The composition of the population, specifically its age distribution, provides valuable insights into the social and economic priorities for public policy planning. Countries not nearing the demographic dividends’ stage, i.e. where the majority of the population is not of working age, may face varying levels of dependency ratios. These ratios can be imbalanced towards either high child dependency or old-age dependency.* 
+
+:::
+
+## Demographic Dividend-Driven Fiscal Presures {.scrollable}
+
+::: {.panel-tabset}
+
+### Insights
+- Dependency ratios: child vs. old-age dependency.
+- High child dependency strains public investment.
+
+### Africa dependency ratio
+```{r}
+#| label: region-dep-ratio
+#| fig-height: 11
+#| fig-align: center
+
+# 7. Regional Dependency Ratios
+region_dep_ratio
+```
+
+### School-age cohort
+```{r}
+#| label: school-age-pop
+#| fig-align: center
+#| fig-height: 10 
+#| fig-width: 12
+
+# 9. School-age population evolution
+school_age_pop
+```
+
+### Notes
+
+**High child dependency puts fiscal pressure on per capita education spending**
+
+> *[...] high child dependency ratios can strain per capita public investment and hinder job growth. If the growth of the school-age population outpaces education budgets, per capita spending on education will decrease, impacting future growth and employment prospects, which rely on quality education today.* 
+
+:::
+
+## Youth Employment Challenge
+
+::: {.panel-tabset}
+
+### Insights
+- Struggle to create well-paying, stable jobs.
+- Projected 54% increase in working-age population by 2060.
+- Importance of job-creating policies to leverage demographic surge.
+
+### WAP annual change
+```{r}
+#| label: africa-working-pop
+#| fig-align: center
+
+# 6. Working-age Population Annual Change
+wap_annual_change
+```
+
+### Notes
+
+**High child dependency also puts *progressive* fiscal pressure on future labor markets**
+
+> *On the other hand, African economies are already struggling to create well-paying, stable jobs, let alone address the imminent demographic challenge.*
+:::
+
+# Changing the Tide: What Will It Take?
+
+## Policy Priorities{.scrollable}
+
+::: {.panel-tabset}
+
+### Insights
+- Importance of Domestic Resource Mobilization (DRM).
+- Focusing on women and youth for long-term benefits.
+- Critical need for public investments in human capital.
+
+### Notes
+
+> Effective public investments in human capital can take very long time to mature, as they are closely linked to demographic dynamics, which operate on long-term scales. Consequently, the nature of planning should be conceived on the long term dimension as well.
+
+> Therefore, ensuring Africa does not miss the opportunity of maximizing its demographic dividends requires designing and implementing highly effective medium- and long-term development plans. These plans must be closely monitored and adjusted as contexts and forecasts change. The challenge is significant, and time is short. So, where to start?
+
+> One policy priority stands out: **Domestic Resources Mobilization (DRM)**. Significantly improving the state's ability to rely on predictable financial flows is crucial for supporting development sustainability with sustainable finances (Duarte, Cristina 2020). 
+
+> This does not contradict the imperative of focusing on women and youth; rather, it complements it. Maintaining policy focus on these groups may hold unparalleled potential for long-term benefits. Substantial, well-targeted, and sustained human capital investments could deliver aggregate returns at sufficiently high levels to enact the kind of economic transformation hoped for.
+
+:::
+
+## Education Funding {.scrollable}
+
+::: {.panel-tabset}
+
+### Insights
+- Education budget below international benchmark (4% of GDP).
+- Need to double education expenditures for universal enrollment by 2030.
+- Efficient resource use for maximum impact.
+
+### Notes
+
+**More Spending**
+
+> *[...] while it needs recognizing that better funding alone does not guarantee improved learning outcomes, countries that spend the least per school-age child face higher levels of learning poverty and fewer learning-adjusted years of schooling* [World Bank Feature Story](https://www.worldbank.org/en/news/feature/2023/04/24/the-false-dichotomy-between-more-more-effective-public-spending-on-education-lessons-from-country-experiences), April 24 2023.
+
+**Higher AND more efficient education Spending is needed**
+
+> *[...] according to the IMF, to achieve universal primary and secondary school enrollment by 2030, education expenditures may need to double, including contributions from both public and private sectors. This would require not just higher funding but also more efficient use of resources to ensure maximum impact per dollar spent.*
+
+:::
+
+## Reproductive Health {.scrollable}
+
+::: {.panel-tabset}
+
+### Fertility Rates:
+
+- The global total fertility rate (TFR) is on a declining trajectory.
+- Population growth can still be driven by high TFR or population momentum, which sustains high birth numbers even as individual fertility rates fall.
+- Transitioning to a demographic structure with more working people and fewer dependents allows for increased per capita public investment.
+
+### Impact of SRHR on Economic Productivity:
+
+- Sexual and Reproductive Health and Rights (SRHR) are crucial for the health and economic productivity of adolescents and youth.
+- Addressing unmet needs for family planning can reduce high dependency ratios and support the growth of a productive working-age population.
+- Supporting reproductive rights enables significant investments in each child's health and education, preparing a skilled workforce for the future.
+
+### Effective Policy Interventions:
+
+- Policy interventions aimed at empowering women through education, economic opportunities, and access to reproductive health services effectively reduce fertility rates.
+- Implementing these strategies facilitates a demographic transition supporting gender equity and broader economic and human development goals.
+- Population momentum can positively contribute to societal change by improving per capita public investment.
+
+### Momentum
+
+```{r}
+dem_momentum1
+dem_momentum2
+dem_momentum3
+```
+
+:::
+
+# A Demographic Dividend Framework
+
+## Conceptual Framework {.scrollable}
+
+::: {.panel-tabset}
+
+### Insights
+- Governance and economic institutions as foundational elements.
+- Pre-Dividend and Early-Dividend stages.
+- Strategic sectors: Family Planning, Maternal and Child Health, Education, Women’s Empowerment.
+
+### The Framework
+![A demographic dividend framework *(Cardona et al, 2020)*](../../docs/dividends_frmwk.jpeg){fig-align="center" width=500}
+
+### Prosperity Wheel
+![Potential sector-specific programs and interventions *(Cardona et al., 2020)*](../../docs/prosperity_wheel.jpeg){fig-align="center" width=400}
+:::
+
+# Conclusion
+
+## Investment Imperative
+
+::: {.panel-tabset}
+
+### Insights
+- Sustained investment in human capital is crucial.
+- Strengthening DRM institutions for financial predictability.
+- Comprehensive national systems in education, health, social security.
+
+
+:::
+
+# Next Steps
+
+ - Expand analysis with other relevant data sources: 
+  - WHO (reproductive health) 
+  - ILO (youth and women employment) and 
+  - World Bank (Poverty, Debt Servicing, etc.)
+- In-depth country-level parameterized reports
+- Regression Analysis
+
+
+
+
+
+
+
+

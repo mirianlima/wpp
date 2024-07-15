@@ -1,0 +1,33 @@
+/*-- scss:rules --*/
+
+.quarto-dashboard .bslib-value-box .value-box-value {
+    font-size: clamp(.1em, 10cqw, 5em) !important;
+}
+
+#quarto-dashboard-header .navbar-title-text {
+  display: none
+}
+
+@include media-breakpoint-up(md) {
+  #dashboard-collapse {
+    justify-content: flex-end;
+
+    .navbar-nav.me-auto {
+      margin-right: unset !important;
+    }
+  }
+
+  .navbar .navbar-nav .active {
+    box-shadow: 0px -2px 0px 0px inset;
+    background-color: unset;
+  }
+}
+
+
+.quarto-dashboard #quarto-content.quarto-dashboard-content {
+    padding: 0;
+}
+
+.quarto-dashboard .quarto-dashboard-content>.tab-content>.dashboard-page>.dashboard-toolbar-container>.toolbar-content, .quarto-dashboard .quarto-dashboard-content>.tab-content>.dashboard-page:not(.dashboard-sidebar-container)>*:not(.dashboard-toolbar-container) {
+    padding: .5em;
+}

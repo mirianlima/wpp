@@ -1,0 +1,40 @@
+# Statistical Appendix
+
+### Total Fertility Rate
+
+```{r}
+# 14. TFR distribution boxplot
+tfr_regions_boxplots
+```
+
+### Working-age Population: size vs TFR champions
+
+```{r}
+#| fig-height: 4.5
+# 15. Working-age population size chanpions VS TFR champions
+
+# Working-age population size champions
+twa_size_chanprions
+
+# TFR champions
+twa_tfr_chanpions
+```
+
+### Regions & Africa's Subregions Total Working-Age Distributions
+
+```{r}
+# 17. Working-age Distribution ridgeplot 
+
+# Regions
+wap_ridge_regions
+
+#Ssubregions
+wap_ridge_subregions
+```
+
+## Rankings
+
+```{r}
+# 18. Indicators Country Rankings
+indicator_rankings
+```

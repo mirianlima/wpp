@@ -1,0 +1,154 @@
+---
+toc: true
+format:
+  html:
+    page-layout: full
+    grid: 
+      body-width: 1000px
+execute:
+  echo: false
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup}
+#| include: false
+pacman::p_load(
+  tidyverse,
+  here,
+  data.table,
+  DataExplorer,
+  SmartEDA,
+  dlookr,
+  ggstatsplot,
+  DT
+)
+
+# source(here("scripts/functions.R"))
+```
+
+```{r dataframe}
+#| include: false
+#| cache: true
+
+# Country Data
+data <- fread(here("data/processed/c_dem.csv")) 
+codebook <- fread(here("data/codebook.csv")) 
+
+# Data for Tables
+tbl_codebook <- codebook |> 
+  select(
+    Topic,
+    Indicator,
+    `Measurement Unit`=Unit,
+    `Indicator Name`=IndicatorName
+  )
+  
+
+tbl_data <- data |> 
+  filter(time >= 2000, !income %in% c("","Not classified")) |> 
+  select(
+    Region=region,
+    Subregion=region_int,
+    Country=location,
+    iso3=iso3_code, 
+    `Income Level`=income,
+    Year=time,
+    t_t_population=t_population1july,       
+    t_population_male=t_population_male1july,
+    t_population_female=t_population_female1july,
+    pop_density:cnmr,
+    total_children:dep_ratio_old_age_65,
+    LLDC=lldc,
+    LDC=ldc,
+    SIDS=sids
+  ) |> 
+  mutate(
+    srb=as.numeric(srb),
+    across(where(is.numeric), ~round(.,2)),
+    across(where(is.character), as.factor),
+    Country=as.character(Country)
+  )
+```
+
+::: {.panel-tabset}
+## Table
+```{r Data}
+datatable(
+  tbl_data |> filter(between(Year,2020,2060)),
+  rownames = FALSE,
+  extensions = c('Buttons', 'ColReorder', 'FixedColumns', 'Select','SearchPanes'), 
+  selection = 'none',
+  options = list(
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(
+        className = 'dt-center', 
+        targets = 5
+      ),
+     list(width = '160px', targets = c(4)),
+     list(width = '100px', targets = c(1))
+    ),
+    searchPanes = list(
+      cascadePanes = TRUE,
+      viewTotal = TRUE,
+      initCollapsed = TRUE,
+      columns = c(0:4,35:38)
+    ),
+    pageLength = 50,
+    lengthMenu = c(10, 20, 30, 50),
+    language = list(search = 'Filter:'),
+    dom = 'BPfrtip',
+    buttons = list(I('colvis'), 'copy', 'csv', 'excel'),
+    colReorder = TRUE,
+    scrollX = TRUE,
+    deferRender = TRUE,
+    scrollY = 500,
+    scroller = TRUE,
+    fixedColumns = list(leftColumns = 3),
+    searchHighlight = TRUE
+  )
+)
+```
+
+## Codebook
+```{r Codebook}
+datatable(
+  tbl_codebook,
+  rownames = FALSE,
+  extensions = c('Buttons'), 
+  options = list(
+    autoWidth = TRUE,
+    pageLength = 55,
+    lengthMenu = c(10, 20, 30, 55),
+    language = list(search = 'Filter:'),
+    dom = 'Bfrtip',
+    buttons = list('copy', 'csv', 'excel'),
+    deferRender = TRUE,
+    scrollY = 500,
+    scroller = TRUE,
+    searchHighlight = TRUE
+  )
+)
+```
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

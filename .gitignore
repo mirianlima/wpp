@@ -1,0 +1,25 @@
+# RStudio files
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rapp.history
+.Rproj.user
+
+# Quarto files
+/.quarto/
+site_libs
+
+# Directories
+/.scratchpad/
+/data/raw/
+*_cache
+*_files
+
+# Specific files for different operating systems
+.DS_Store
+Thumbs.db
+
+# Exclude individual files
+*.html
+*.pdf

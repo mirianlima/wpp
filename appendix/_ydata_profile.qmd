@@ -1,0 +1,19 @@
+---
+title: "Data Profiling Report"
+format: html
+execute:
+  freeze: auto
+  echo: true
+  python: '/Users/mlima/Code/R/wpp/website/myenv/bin/python'
+---
+
+```{python}
+import numpy as np
+import pandas as pd
+from ydata_profiling import ProfileReport
+
+df = pd.read_csv('../data/processed/a_dem.csv')
+profile = ProfileReport(df, title="Explorative Profiling Report", explorative=True)
+profile.to_file("output_explore.html")
+
+```

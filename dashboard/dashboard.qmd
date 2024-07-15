@@ -1,0 +1,221 @@
+---
+title: "Dashboard"
+format: 
+ dashboard:
+   html:
+    fig-width: 10
+    fig-height: 6 
+    fig-align: center
+   navbar: right
+   css: dashboard.scss
+execute:
+  echo: false
+  warning: false
+---
+
+```{r local_packages}
+#| include: false
+```
+
+{{< include ../_setup.qmd >}}
+
+# World Population {orientation="columns"}
+
+##  Column
+
+### Row {height=20%}
+```{r}
+#| content: valuebox
+#| title: "2000 World Population"
+
+list(
+  icon = "globe-europe-africa",
+  color = "secondary",
+  value = paste(pop_world(year=2000), " B")
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: "2024 World Population"
+
+list(
+  icon = "globe-central-south-asia",
+  color = "secondary",
+  value = paste(pop_world(), " B")
+)
+```
+
+### Row {height=28%}
+::: {.card}
+The United Nations forecasts that the worldwide population will peak before the end of the century, surpassing `r pop_world(year=2100)` billion individuals. Contrary to widespread belief, the world's population is not undergoing exponential growth. Although the total number of people worldwide continues to rise, the rate of population growth reached its maximum decades ago. To maintain a stable population, the Total Fertility Rate (TFR) must be at replacement level (2.1 children per woman). The global convergence of total fertility rates (TFR) at or below the replacement level will eventually reduce overall population sizes to earlier levels. However, the demographic composition at that point will differ significantly from the past. The world will face higher old-age dependency ratios, raising concerns and likely **intensifying competition for young migrants**.
+:::
+
+### Row {height=50%}
+```{r}
+# 1. Long Run Population Growth (OWID)
+world_long_run_owid
+```
+
+## Column
+
+```{r}
+# 2. Population Size Evolution
+world_pop_size
+```
+
+```{r}
+# 3. Fertility Rates
+fertility_rates_decline
+```
+
+# Fertility Rates {orientation="columns"}
+
+## Column 
+
+### Row {.tabset}
+
+```{r}
+#| title: "Africa Doubling"
+# 4. Africa Doubling Population
+africa_double_2060
+```
+
+```{r}
+#| title: "Africa TFR Convergence"
+# 5. Declining Fertility Convergence
+africa_tfr_decline
+```
+
+### Row
+
+```{r}
+# 14. TFR distribution boxplot
+tfr_regions_boxplots
+```
+
+## Column
+
+```{r}
+#| fig-width: 9
+#| fig-height: 9
+# 7. Regional Dependency Ratios
+region_dep_ratio &
+  plot_annotation(theme = theme(plot.background = element_rect(colour="white")))
+```
+
+# Growth Momentum
+
+## Row
+
+## How population momentum works
+
+```{r}
+# 11. How Population Momentum Works
+dem_momentum1
+```
+
+```{r}
+# 11. How Population Momentum Works
+dem_momentum2
+```
+
+```{r}
+# 11. How Population Momentum Works
+dem_momentum3
+```
+## Row 
+
+```{r}
+# 12. TFR Cumulative Plots: Regions
+cum_tfr_regions
+```
+
+```{r}
+# 13. TFR Cumulative Plots: Sub-Regions
+cum_tfr_subregions
+```
+
+# Working-age Population {orientation="columns"}
+
+## Column
+
+### Row
+
+```{r}
+# 6. Working-age Population Annual Change
+wap_annual_change
+```
+
+### Row {.tabset} 
+
+```{r}
+#| title: Size Chanpions
+#| fig-width: 10
+# 15. Working-age population size chanpions VS TFR champions
+
+# Working-age population size champions
+twa_size_champions
+```
+
+```{r}
+#| title: TFR Chanpions
+#| fig-width: 10
+# TFR champions
+twa_tfr_champions
+```
+
+## Column 
+
+### Row {height=10%}
+
+Between 2024 and 2060, Africa's working-age population is projected to increase by about <b>`r dc |> pull(change) |> round()` percent</b>, equating to roughly <b>`r dc |> pull(diff) |> round()` million people</b>.
+
+### Row {.tabset}
+
+```{r}
+#| title: Regions 
+#| fig-height: 9
+#| fig-width: 10
+# 17. Working-age Distribution ridgeplot 
+# Regions
+wap_ridge_regions + labs(
+  title = "Regions Working-age Population Distribution"
+)
+```
+
+```{r}
+#| title: Sub-regions
+#| fig-height: 9
+#| fig-width: 10
+#Subregions
+wap_ridge_subregions + labs(
+  title = "Sub-regions Working-age Population Distribution"
+)
+```
+
+# Dependency Ratios {orientation="columns"}
+
+## Column
+
+```{r}
+# 10. Africa being left behing
+left_behind
+```
+
+```{r echo=FALSE, warning=FALSE, out.width="100%"}
+# 8. Old-age VS child dependency ratios
+old_child_dep_ratios
+```
+
+## Column
+
+```{r}
+#| fig-width: 12
+#| fig-height: 13
+# 9. School-age population evolution
+school_age_pop
+```
+
+
+

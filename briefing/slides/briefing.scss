@@ -1,0 +1,38 @@
+/*-- scss:defaults --*/
+$presentation-heading-color: #f58220;
+
+/*-- scss:rules --*/
+
+.border {
+  border: 1px solid #dee2e6;
+}
+
+.border-thick {
+  border-width: 3px;
+}
+
+.sectionhead {
+  font-size: 1em;
+  text-align: center;
+  color: #cc0000;
+  font-family: $presentation-heading-font;
+  margin: 1px;
+  padding: 2px 2px 2px 2px;
+  width: 120px;
+  border-left: 10px solid;
+}
+
+#title-slide .title:before {
+  content: url('website/docs/identifier_white.png');
+  display: block;
+}
+
+.panel-tabset-tabby {
+  li[role="presentation"] {
+    a[aria-selected="true"] {
+      background-color: #4CA2DF !important;
+      color:#012B36;
+    }
+  }
+}
+

@@ -1,0 +1,12 @@
+### How population momentum works
+
+```{r}
+#| fig-align: center
+#| fig-height: 5.5
+#| layout-rows: 3
+
+# 11. How Population Momentum Works
+dem_momentum1
+dem_momentum2
+dem_momentum3
+```
