@@ -12,7 +12,8 @@ site_libs
 
 # Directories
 /.scratchpad/
-/data/raw/
+data/
+myenv/
 *_cache
 *_files
 
