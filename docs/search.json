@@ -1,0 +1,240 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Fertility and Fiscal Space",
+    "section": "",
+    "text": "The Fertility Factor\n\n\nGender Equity as a Catalyst for Economic Transformation in Africa"
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/idna-3.7.dist-info/LICENSE.html",
+    "href": "myenv/lib/python3.11/site-packages/idna-3.7.dist-info/LICENSE.html",
+    "title": "Fertility and Fiscal Space",
+    "section": "",
+    "text": "BSD 3-Clause License\nCopyright (c) 2013-2024, Kim Davies and contributors. All rights reserved.\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\nNeither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_advanced.html",
+    "href": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_advanced.html",
+    "title": "Phi_K advanced tutorial",
+    "section": "",
+    "text": "This notebook guides you through the more advanced functionality of the phik package. This notebook will not cover all the underlying theory, but will just attempt to give an overview of all the options that are available. For a theoretical description the user is referred to our paper.\nThe package offers functionality on three related topics:\n%%capture\n# install phik (if not installed yet)\nimport sys\n\n!\"{sys.executable}\" -m pip install phik\n# import standard packages\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport itertools\n\nimport phik\n\nfrom phik import resources\nfrom phik.binning import bin_data\nfrom phik.decorators import *\nfrom phik.report import plot_correlation_matrix\n\n%matplotlib inline\n# if one changes something in the phik-package one can automatically reload the package or module\n%load_ext autoreload\n%autoreload 2"
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_advanced.html#specify-bin-types",
+    "href": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_advanced.html#specify-bin-types",
+    "title": "Phi_K advanced tutorial",
+    "section": "Specify bin types",
+    "text": "Specify bin types\nThe phik-package offers a way to calculate correlations between variables of mixed types. Variable types can be inferred automatically although we recommend to variable types to be specified by the user.\nBecause interval type variables need to be binned in order to calculate phik and the significance, a list of interval variables is created.\n\ndata_types = {'severity': 'interval',\n             'driver_age':'interval',\n             'satisfaction':'ordinal',\n             'mileage':'interval',\n             'car_size':'ordinal',\n             'car_use':'ordinal',\n             'car_color':'categorical',\n             'area':'categorical'}\n\ninterval_cols = [col for col, v in data_types.items() if v=='interval' and col in data.columns]\ninterval_cols\n# interval_cols is used below\n\n['driver_age', 'mileage']"
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_basic.html",
+    "href": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_basic.html",
+    "title": "Phi_K basic tutorial",
+    "section": "",
+    "text": "This notebook guides you through the basic functionality of the phik package. The package offers functionality on three related topics:\nFor more information on the underlying theory, the user is referred to our paper.\n%%capture\n# install phik (if not installed yet)\nimport sys\n\n!\"{sys.executable}\" -m pip install phik\n# import standard packages\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport itertools\n\nimport phik\n\nfrom phik import resources\nfrom phik.binning import bin_data\nfrom phik.report import plot_correlation_matrix\n\n%matplotlib inline\n# if one changes something in the phik-package one can automatically reload the package or module\n%load_ext autoreload\n%autoreload 2"
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_basic.html#bin-the-interval-variables",
+    "href": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_basic.html#bin-the-interval-variables",
+    "title": "Phi_K basic tutorial",
+    "section": "Bin the interval variables",
+    "text": "Bin the interval variables\nTo get a feeling for the data, let’s bin the interval variables and create 2d histograms to inspect the correlations between variables. By binning the interval variables we can treat all variable types in the same way.\n\n# bin the interval variables\ndata_binned, binning_dict = bin_data(data, cols=interval_cols, retbins=True)\n\n\nbinning_dict\n\n{'driver_age': [(18.030700817879673, 28.34523864121504),\n  (28.34523864121504, 38.659776464550404),\n  (38.659776464550404, 48.974314287885775),\n  (48.974314287885775, 59.288852111221146),\n  (59.288852111221146, 69.60338993455652),\n  (69.60338993455652, 79.91792775789187),\n  (79.91792775789187, 90.23246558122725),\n  (90.23246558122725, 100.54700340456262),\n  (100.54700340456262, 110.86154122789799),\n  (110.86154122789799, 121.17607905123334)],\n 'mileage': [(53.54305708442213, 30047.010932306846),\n  (30047.010932306846, 60040.478807529274),\n  (60040.478807529274, 90033.94668275169),\n  (90033.94668275169, 120027.41455797412),\n  (120027.41455797412, 150020.88243319656),\n  (150020.88243319656, 180014.35030841897),\n  (180014.35030841897, 210007.81818364142),\n  (210007.81818364142, 240001.28605886383),\n  (240001.28605886383, 269994.75393408624),\n  (269994.75393408624, 299988.2218093087)]}\n\n\n\n# plot each variable pair\nplt.rc('text', usetex=False)\n\nn=0\nfor i in range(len(data.columns)):\n    n=n+i\n    \nncols=3\nnrows=int(np.ceil(n/ncols))\nfig, axes = plt.subplots(nrows, ncols, figsize=(15,4*nrows))\nndecimals = 0\n\nfor i, comb in enumerate(itertools.combinations(data_binned.columns.values, 2)):\n    \n    c = int(i%ncols)\n    r = int((i-c)/ncols )\n\n    # get data\n    c0, c1 = comb\n    datahist = data_binned.groupby([c0,c1])[c0].count().to_frame().unstack().fillna(0)\n    datahist.columns = datahist.columns.droplevel()\n    \n    # plot data\n    img = axes[r][c].pcolormesh(datahist.values, edgecolor='w', linewidth=1)\n    \n    # axis ticks and tick labels\n    if c0 in binning_dict.keys():\n        ylabels = ['{1:.{0}f}_{2:.{0}f}'.format(ndecimals, binning_dict[c0][i][0], binning_dict[c0][i][1])\n                   for i in range(len(binning_dict[c0]))]\n    else:\n        ylabels = datahist.index\n\n    if c1 in binning_dict.keys():        \n        xlabels = ['{1:.{0}f}_{2:.{0}f}'.format(ndecimals, binning_dict[c1][i][0], binning_dict[c1][i][1])\n                    for i in range(len(binning_dict[c1]))]\n    else:\n        xlabels = datahist.columns\n    \n    # axis labels\n    axes[r][c].set_yticks(np.arange(len(ylabels)) + 0.5)\n    axes[r][c].set_xticks(np.arange(len(xlabels)) + 0.5)\n    axes[r][c].set_xticklabels(xlabels, rotation='vertical')\n    axes[r][c].set_yticklabels(ylabels, rotation='horizontal')    \n    axes[r][c].set_xlabel(datahist.columns.name)\n    axes[r][c].set_ylabel(datahist.index.name)    \n    axes[r][c].set_title('data')\n    \nplt.tight_layout()"
+  },
+  {
+    "objectID": "article/article.html#rankings",
+    "href": "article/article.html#rankings",
+    "title": "The Fertility Factor: Gender Equity as a Catalyst for Economic Transformation in Africa",
+    "section": "Rankings",
+    "text": "Rankings"
+  },
+  {
+    "objectID": "article/article.html#footnotes",
+    "href": "article/article.html#footnotes",
+    "title": "The Fertility Factor: Gender Equity as a Catalyst for Economic Transformation in Africa",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nHans Rosling notably introduced the concept of “peak child”, marking the point in global demographic history when the population of children younger than five years old ceased to grow↩︎\nFor details see Sauda & Pinto Moreira (2020) and “One Year in the Infuriating and Humiliating Search for a Job in South Africa” (2023), part of The New York Times series: “Old World, Young Africa”.↩︎\nAfrobarometer News Release (November 2023)↩︎\nThe Education 2030 Framework for Action sets two public education spending benchmarks. Ambiguously, it urged countries to spend 4% to 6% of their gross domestic product (GDP) on education ‘and/or’ 15% to 20% of their total public expenditure. Considering that poorer countries tend to have small budgets but a high demographic pressure to prioritize education while richer countries have large budgets but a relatively small school-age population, the Global Education Monitoring (GEM) Report, by UNESCO, has long argued that meeting either of the two benchmarks should be considered a minimum requirement.↩︎\n“The False Dichotomy between More & More Effective Public Spending on Education: Lessons from Country Experiences”, World Bank Feature Story, April 24 2023, available at: https://www.worldbank.org/en/news/feature/2023/04/24/the-false-dichotomy-between-more-more-effective-public-spending-on-education-lessons-from-country-experiences↩︎\n1. International Labour Organization. “Making Labour Statistics Work for Women: Recent Developments and the Way Ahead.” ILOSTAT, 2024. Accessed May 22, 2024. https://ilostat.ilo.org/blog/making-labour-statistics-work-for-women-recent-developments-and-the-way-ahead/ 2.International Labour Organization. “Women Are More Likely Than Men to Want a Job But Not Have One.” ILOSTAT, 2024. Accessed May 22, 2024. https://ilostat.ilo.org/blog/women-are-more-likely-than-men-to-want-a-job-but-not-have-one/. 3. International Labour Organization. “Women with Young Children Have Much Lower Labour Force Participation Rates.” ILOSTAT, 2024. Accessed May 22, 2024. https://ilostat.ilo.org/blog/women-with-young-children-have-much-lower-labour-force-participation-rates/. 4. Doepke, Matthias, Anne Hannusch, Fabian Kindermann, and Michèle Tertilt. “New Economics of Fertility.” IMF, 2022. Accessed May 22, 2024. https://www.imf.org/en/Publications/fandd/issues/Series/Analytical-Series/new-economics-of-fertility-doepke-hannusch-kindermann-tertilt↩︎"
+  },
+  {
+    "objectID": "briefing/slides/index.html",
+    "href": "briefing/slides/index.html",
+    "title": "Fertility & Fiscal Space",
+    "section": "",
+    "text": "InsightsWorld StatsLong Run Growth\n\n\n\nHuman history shaped by population dynamics.\nPopulation explosion post-Industrial Revolution.\nSurge from 6.1 billion (2000) to 8.1 billion (2024).\nUnderlying trend: declining fertility rates globally.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2000 World Population\n6.1  Billions\n\n\n\n\n\n\n\n\n\n\n\n\n2024 World Population\n8.1  Billions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInsightsPeak PopulationDeclining Fertility\n\n\n\nUN forecasts peak population over 10.3 billion by century’s end.\nDeclining growth rates despite rising total numbers.\nThe dynamics of TFR, population growth & replacement level (2.1)."
+  },
+  {
+    "objectID": "briefing/slides/index.html#world-population-dynamics",
+    "href": "briefing/slides/index.html#world-population-dynamics",
+    "title": "Fertility & Fiscal Space",
+    "section": "",
+    "text": "InsightsWorld StatsLong Run Growth\n\n\n\nHuman history shaped by population dynamics.\nPopulation explosion post-Industrial Revolution.\nSurge from 6.1 billion (2000) to 8.1 billion (2024).\nUnderlying trend: declining fertility rates globally.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2000 World Population\n6.1  Billions\n\n\n\n\n\n\n\n\n\n\n\n\n2024 World Population\n8.1  Billions"
+  },
+  {
+    "objectID": "briefing/slides/index.html#population-forecast",
+    "href": "briefing/slides/index.html#population-forecast",
+    "title": "Fertility & Fiscal Space",
+    "section": "",
+    "text": "InsightsPeak PopulationDeclining Fertility\n\n\n\nUN forecasts peak population over 10.3 billion by century’s end.\nDeclining growth rates despite rising total numbers.\nThe dynamics of TFR, population growth & replacement level (2.1)."
+  },
+  {
+    "objectID": "briefing/slides/index.html#demographic-composition",
+    "href": "briefing/slides/index.html#demographic-composition",
+    "title": "Fertility & Fiscal Space",
+    "section": "Demographic Composition",
+    "text": "Demographic Composition\n\nInsightsDoubling by 2060With declining fertilityOld vs child dependencyNote\n\n\n\nDemographic dividend is a (short) window of opportunity\nAge distribution define the priorities for public policy planning\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDemographic Composition Conditions Policy Planning\n\nThe composition of the population, specifically its age distribution, provides valuable insights into the social and economic priorities for public policy planning. Countries not nearing the demographic dividends’ stage, i.e. where the majority of the population is not of working age, may face varying levels of dependency ratios. These ratios can be imbalanced towards either high child dependency or old-age dependency."
+  },
+  {
+    "objectID": "briefing/slides/index.html#demographic-dividend-driven-fiscal-presures",
+    "href": "briefing/slides/index.html#demographic-dividend-driven-fiscal-presures",
+    "title": "Fertility & Fiscal Space",
+    "section": "Demographic Dividend-Driven Fiscal Presures",
+    "text": "Demographic Dividend-Driven Fiscal Presures\n\nInsightsAfrica dependency ratioSchool-age cohortNotes\n\n\n\nDependency ratios: child vs. old-age dependency.\nHigh child dependency strains public investment.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHigh child dependency puts fiscal pressure on per capita education spending\n\n[…] high child dependency ratios can strain per capita public investment and hinder job growth. If the growth of the school-age population outpaces education budgets, per capita spending on education will decrease, impacting future growth and employment prospects, which rely on quality education today."
+  },
+  {
+    "objectID": "briefing/slides/index.html#youth-employment-challenge",
+    "href": "briefing/slides/index.html#youth-employment-challenge",
+    "title": "Fertility & Fiscal Space",
+    "section": "Youth Employment Challenge",
+    "text": "Youth Employment Challenge\n\nInsightsWAP annual changeNotes\n\n\n\nStruggle to create well-paying, stable jobs.\nProjected 54% increase in working-age population by 2060.\nImportance of job-creating policies to leverage demographic surge.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHigh child dependency also puts progressive fiscal pressure on future labor markets\n\nOn the other hand, African economies are already struggling to create well-paying, stable jobs, let alone address the imminent demographic challenge."
+  },
+  {
+    "objectID": "briefing/slides/index.html#policy-priorities",
+    "href": "briefing/slides/index.html#policy-priorities",
+    "title": "Fertility & Fiscal Space",
+    "section": "Policy Priorities",
+    "text": "Policy Priorities\n\nInsightsNotes\n\n\n\nImportance of Domestic Resource Mobilization (DRM).\nFocusing on women and youth for long-term benefits.\nCritical need for public investments in human capital.\n\n\n\n\nEffective public investments in human capital can take very long time to mature, as they are closely linked to demographic dynamics, which operate on long-term scales. Consequently, the nature of planning should be conceived on the long term dimension as well.\n\n\nTherefore, ensuring Africa does not miss the opportunity of maximizing its demographic dividends requires designing and implementing highly effective medium- and long-term development plans. These plans must be closely monitored and adjusted as contexts and forecasts change. The challenge is significant, and time is short. So, where to start?\n\n\nOne policy priority stands out: Domestic Resources Mobilization (DRM). Significantly improving the state’s ability to rely on predictable financial flows is crucial for supporting development sustainability with sustainable finances (Duarte, Cristina 2020).\n\n\nThis does not contradict the imperative of focusing on women and youth; rather, it complements it. Maintaining policy focus on these groups may hold unparalleled potential for long-term benefits. Substantial, well-targeted, and sustained human capital investments could deliver aggregate returns at sufficiently high levels to enact the kind of economic transformation hoped for."
+  },
+  {
+    "objectID": "briefing/slides/index.html#education-funding",
+    "href": "briefing/slides/index.html#education-funding",
+    "title": "Fertility & Fiscal Space",
+    "section": "Education Funding",
+    "text": "Education Funding\n\nInsightsNotes\n\n\n\nEducation budget below international benchmark (4% of GDP).\nNeed to double education expenditures for universal enrollment by 2030.\nEfficient resource use for maximum impact.\n\n\n\nMore Spending\n\n[…] while it needs recognizing that better funding alone does not guarantee improved learning outcomes, countries that spend the least per school-age child face higher levels of learning poverty and fewer learning-adjusted years of schooling World Bank Feature Story, April 24 2023.\n\nHigher AND more efficient education Spending is needed\n\n[…] according to the IMF, to achieve universal primary and secondary school enrollment by 2030, education expenditures may need to double, including contributions from both public and private sectors. This would require not just higher funding but also more efficient use of resources to ensure maximum impact per dollar spent."
+  },
+  {
+    "objectID": "briefing/slides/index.html#reproductive-health",
+    "href": "briefing/slides/index.html#reproductive-health",
+    "title": "Fertility & Fiscal Space",
+    "section": "Reproductive Health",
+    "text": "Reproductive Health\n\nFertility Rates:Impact of SRHR on Economic Productivity:Effective Policy Interventions:Momentum\n\n\n\nThe global total fertility rate (TFR) is on a declining trajectory.\nPopulation growth can still be driven by high TFR or population momentum, which sustains high birth numbers even as individual fertility rates fall.\nTransitioning to a demographic structure with more working people and fewer dependents allows for increased per capita public investment.\n\n\n\n\nSexual and Reproductive Health and Rights (SRHR) are crucial for the health and economic productivity of adolescents and youth.\nAddressing unmet needs for family planning can reduce high dependency ratios and support the growth of a productive working-age population.\nSupporting reproductive rights enables significant investments in each child’s health and education, preparing a skilled workforce for the future.\n\n\n\n\nPolicy interventions aimed at empowering women through education, economic opportunities, and access to reproductive health services effectively reduce fertility rates.\nImplementing these strategies facilitates a demographic transition supporting gender equity and broader economic and human development goals.\nPopulation momentum can positively contribute to societal change by improving per capita public investment."
+  },
+  {
+    "objectID": "briefing/slides/index.html#conceptual-framework",
+    "href": "briefing/slides/index.html#conceptual-framework",
+    "title": "Fertility & Fiscal Space",
+    "section": "Conceptual Framework",
+    "text": "Conceptual Framework\n\nInsightsThe FrameworkProsperity Wheel\n\n\n\nGovernance and economic institutions as foundational elements.\nPre-Dividend and Early-Dividend stages.\nStrategic sectors: Family Planning, Maternal and Child Health, Education, Women’s Empowerment.\n\n\n\n\n\n\nA demographic dividend framework (Cardona et al, 2020)\n\n\n\n\n\n\n\nPotential sector-specific programs and interventions (Cardona et al., 2020)"
+  },
+  {
+    "objectID": "briefing/slides/index.html#investment-imperative",
+    "href": "briefing/slides/index.html#investment-imperative",
+    "title": "Fertility & Fiscal Space",
+    "section": "Investment Imperative",
+    "text": "Investment Imperative\n\nInsights\n\n\n\nSustained investment in human capital is crucial.\nStrengthening DRM institutions for financial predictability.\nComprehensive national systems in education, health, social security."
+  },
+  {
+    "objectID": "dashboard/dashboard.html",
+    "href": "dashboard/dashboard.html",
+    "title": "Dashboard",
+    "section": "",
+    "text": "$icon\n[1] \"globe-europe-africa\"\n\n$color\n[1] \"secondary\"\n\n$value\n[1] \"6.1  B\"\n\n\n\n\n$icon\n[1] \"globe-central-south-asia\"\n\n$color\n[1] \"secondary\"\n\n$value\n[1] \"8.1  B\"\n\n\n\n\n\n\nThe United Nations forecasts that the worldwide population will peak before the end of the century, surpassing 10.3 billion individuals. Contrary to widespread belief, the world’s population is not undergoing exponential growth. Although the total number of people worldwide continues to rise, the rate of population growth reached its maximum decades ago. To maintain a stable population, the Total Fertility Rate (TFR) must be at replacement level (2.1 children per woman). The global convergence of total fertility rates (TFR) at or below the replacement level will eventually reduce overall population sizes to earlier levels. However, the demographic composition at that point will differ significantly from the past. The world will face higher old-age dependency ratios, raising concerns and likely intensifying competition for young migrants."
+  },
+  {
+    "objectID": "dashboard/dashboard.html#column",
+    "href": "dashboard/dashboard.html#column",
+    "title": "Dashboard",
+    "section": "",
+    "text": "$icon\n[1] \"globe-europe-africa\"\n\n$color\n[1] \"secondary\"\n\n$value\n[1] \"6.1  B\"\n\n\n\n\n$icon\n[1] \"globe-central-south-asia\"\n\n$color\n[1] \"secondary\"\n\n$value\n[1] \"8.1  B\"\n\n\n\n\n\n\nThe United Nations forecasts that the worldwide population will peak before the end of the century, surpassing 10.3 billion individuals. Contrary to widespread belief, the world’s population is not undergoing exponential growth. Although the total number of people worldwide continues to rise, the rate of population growth reached its maximum decades ago. To maintain a stable population, the Total Fertility Rate (TFR) must be at replacement level (2.1 children per woman). The global convergence of total fertility rates (TFR) at or below the replacement level will eventually reduce overall population sizes to earlier levels. However, the demographic composition at that point will differ significantly from the past. The world will face higher old-age dependency ratios, raising concerns and likely intensifying competition for young migrants."
+  },
+  {
+    "objectID": "dashboard/dashboard.html#column-2",
+    "href": "dashboard/dashboard.html#column-2",
+    "title": "Dashboard",
+    "section": "Column",
+    "text": "Column\n\nRow\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRow"
+  },
+  {
+    "objectID": "dashboard/dashboard.html#column-3",
+    "href": "dashboard/dashboard.html#column-3",
+    "title": "Dashboard",
+    "section": "Column",
+    "text": "Column"
+  },
+  {
+    "objectID": "dashboard/dashboard.html#row-5",
+    "href": "dashboard/dashboard.html#row-5",
+    "title": "Dashboard",
+    "section": "Row",
+    "text": "Row"
+  },
+  {
+    "objectID": "dashboard/dashboard.html#how-population-momentum-works",
+    "href": "dashboard/dashboard.html#how-population-momentum-works",
+    "title": "Dashboard",
+    "section": "How population momentum works",
+    "text": "How population momentum works"
+  },
+  {
+    "objectID": "dashboard/dashboard.html#row-6",
+    "href": "dashboard/dashboard.html#row-6",
+    "title": "Dashboard",
+    "section": "Row",
+    "text": "Row"
+  },
+  {
+    "objectID": "dashboard/dashboard.html#column-4",
+    "href": "dashboard/dashboard.html#column-4",
+    "title": "Dashboard",
+    "section": "Column",
+    "text": "Column\n\nRow\n\n\n\n\n\n\n\n\n\n\n\nRow"
+  },
+  {
+    "objectID": "dashboard/dashboard.html#column-5",
+    "href": "dashboard/dashboard.html#column-5",
+    "title": "Dashboard",
+    "section": "Column",
+    "text": "Column\n\nRow\nBetween 2024 and 2060, Africa’s working-age population is projected to increase by about 54 percent, equating to roughly 989 million people.\n\n\nRow"
+  },
+  {
+    "objectID": "dashboard/dashboard.html#column-6",
+    "href": "dashboard/dashboard.html#column-6",
+    "title": "Dashboard",
+    "section": "Column",
+    "text": "Column"
+  },
+  {
+    "objectID": "dashboard/dashboard.html#column-7",
+    "href": "dashboard/dashboard.html#column-7",
+    "title": "Dashboard",
+    "section": "Column",
+    "text": "Column"
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_spark.html",
+    "href": "myenv/lib/python3.11/site-packages/phik/notebooks/phik_tutorial_spark.html",
+    "title": "Phi_K spark tutorial",
+    "section": "",
+    "text": "This notebook shows you how to obtain the Phi_K correlation matrix for a spark dataframe. Calculating the Phi_K matrix consists of two steps:\n\nObtain the 2d contingency tables for all variable pairs. To make these we use the histogrammar package.\nCalculate the Phi_K value for each variable pair from its contingency table.\n\nMake sure you install the histogrammar package to make the 2d histograms, that are then used to calculate phik.\n\n%%capture\n# install histogrammar (if not installed yet)\nimport sys\n\n!\"{sys.executable}\" -m pip install histogrammar\n\n\nimport itertools\n\nimport pandas as pd\nimport histogrammar as hg\nfrom histogrammar.plot.hist_numpy import get_2dgrid\n\nimport phik\nfrom phik import resources\nfrom phik.phik import spark_phik_matrix_from_hist2d_dict\n\n\nhistogramming is done using the histogrammar library\n\nfrom pyspark.sql import SparkSession\nfrom pyspark import __version__ as pyspark_version\n\nscala = '2.12' if int(pyspark_version[0]) &gt;= 3 else '2.11'\nhist_jar = f'io.github.histogrammar:histogrammar_{scala}:1.0.20'\nhist_spark_jar = f'io.github.histogrammar:histogrammar-sparksql_{scala}:1.0.20'\n\nspark = SparkSession.builder.config(\n    \"spark.jars.packages\", f'{hist_spark_jar},{hist_jar}'\n).getOrCreate()\n\nspark = SparkSession.builder.config(\n    \"spark.jars.packages\", f'{hist_spark_jar},{hist_jar}'\n).getOrCreate()\n\nsc = spark.sparkContext\n\n\n\nLoad data\nA simulated dataset is part of the phik-package. The dataset concerns fake car insurance data. Load the dataset here:\n\ndata = pd.read_csv( resources.fixture('fake_insurance_data.csv.gz') )\nsdf = spark.createDataFrame(data)\nsdf.show()\n\n\ncombis = itertools.combinations_with_replacement(sdf.columns, 2)\ncombis = [list(c) for c in combis]\n\n\nprint(combis)\n\n\n\nstep 1: create histograms (this runs spark histogrammar in the background)\n\n# see the doc-string of hg_make_histograms() for binning options.\nhists = sdf.hg_make_histograms(combis)\n\n\n# collect the numpy contingency tables into a dict\ngrids = {k:(get_2dgrid(h)[2]) for k,h in hists.items()}\nprint(grids)\n\n\n# we can store the histograms if we want to\nif False:\n    import pickle\n\n    with open('grids.pkl', 'wb') as outfile:\n        pickle.dump(grids, outfile)\n\n    with open('grids.pkl', 'rb') as handle:\n        grids = pickle.load(handle)\n\n\n\nstep 2: calculate phik matrix (runs rdd parallellization over all 2d histograms)\n\nphik_matrix = spark_phik_matrix_from_hist2d_dict(sc, grids)\n\n\nphik_matrix"
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/seaborn-0.12.1.dist-info/LICENSE.html",
+    "href": "myenv/lib/python3.11/site-packages/seaborn-0.12.1.dist-info/LICENSE.html",
+    "title": "Fertility and Fiscal Space",
+    "section": "",
+    "text": "Copyright (c) 2012-2021, Michael L. Waskom All rights reserved.\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\nNeither the name of the project nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/matplotlib/backends/web_backend/nbagg_uat.html",
+    "href": "myenv/lib/python3.11/site-packages/matplotlib/backends/web_backend/nbagg_uat.html",
+    "title": "UAT for NbAgg backend.",
+    "section": "",
+    "text": "from imp import reload\nThe first line simply reloads matplotlib, uses the nbagg backend and then reloads the backend, just to ensure we have the latest modification to the backend code. Note: The underlying JavaScript will not be updated by this process, so a refresh of the browser after clearing the output and saving is necessary to clear everything fully.\nimport matplotlib\nreload(matplotlib)\n\nmatplotlib.use('nbagg')\n\nimport matplotlib.backends.backend_nbagg\nreload(matplotlib.backends.backend_nbagg)"
+  },
+  {
+    "objectID": "myenv/lib/python3.11/site-packages/matplotlib/backends/web_backend/nbagg_uat.html#uat-13---animation",
+    "href": "myenv/lib/python3.11/site-packages/matplotlib/backends/web_backend/nbagg_uat.html#uat-13---animation",
+    "title": "UAT for NbAgg backend.",
+    "section": "UAT 13 - Animation",
+    "text": "UAT 13 - Animation\nThe following should generate an animated line:\n\nimport matplotlib.animation as animation\nimport numpy as np\n\nfig, ax = plt.subplots()\n\nx = np.arange(0, 2*np.pi, 0.01)        # x-array\nline, = ax.plot(x, np.sin(x))\n\ndef animate(i):\n    line.set_ydata(np.sin(x+i/10.0))  # update the data\n    return line,\n\n#Init only required for blitting to give a clean slate.\ndef init():\n    line.set_ydata(np.ma.array(x, mask=True))\n    return line,\n\nani = animation.FuncAnimation(fig, animate, np.arange(1, 200), init_func=init,\n                              interval=100., blit=True)\nplt.show()\n\n\nUAT 14 - Keyboard shortcuts in IPython after close of figure\nAfter closing the previous figure (with the close button above the figure) the IPython keyboard shortcuts should still function.\n\n\nUAT 15 - Figure face colours\nThe nbagg honours all colours apart from that of the figure.patch. The two plots below should produce a figure with a red background. There should be no yellow figure.\n\nimport matplotlib\nmatplotlib.rcParams.update({'figure.facecolor': 'red',\n                            'savefig.facecolor': 'yellow'})\nplt.figure()\nplt.plot([3, 2, 1])\n\nplt.show()\n\n\n\nUAT 16 - Events\nPressing any keyboard key or mouse button (or scrolling) should cycle the line while the figure has focus. The figure should have focus by default when it is created and re-gain it by clicking on the canvas. Clicking anywhere outside of the figure should release focus, but moving the mouse out of the figure should not release focus.\n\nimport itertools\nfig, ax = plt.subplots()\nx = np.linspace(0,10,10000)\ny = np.sin(x)\nln, = ax.plot(x,y)\nevt = []\ncolors = iter(itertools.cycle(['r', 'g', 'b', 'k', 'c']))\ndef on_event(event):\n    if event.name.startswith('key'):\n        fig.suptitle('%s: %s' % (event.name, event.key))\n    elif event.name == 'scroll_event':\n        fig.suptitle('%s: %s' % (event.name, event.step))\n    else:\n        fig.suptitle('%s: %s' % (event.name, event.button))\n    evt.append(event)\n    ln.set_color(next(colors))\n    fig.canvas.draw()\n    fig.canvas.draw_idle()\n\nfig.canvas.mpl_connect('button_press_event', on_event)\nfig.canvas.mpl_connect('button_release_event', on_event)\nfig.canvas.mpl_connect('scroll_event', on_event)\nfig.canvas.mpl_connect('key_press_event', on_event)\nfig.canvas.mpl_connect('key_release_event', on_event)\n\nplt.show()\n\n\n\nUAT 17 - Timers\nSingle-shot timers follow a completely different code path in the nbagg backend than regular timers (such as those used in the animation example above.) The next set of tests ensures that both “regular” and “single-shot” timers work properly.\nThe following should show a simple clock that updates twice a second:\n\nimport time\n\nfig, ax = plt.subplots()\ntext = ax.text(0.5, 0.5, '', ha='center')\n\ndef update(text):\n    text.set(text=time.ctime())\n    text.axes.figure.canvas.draw()\n    \ntimer = fig.canvas.new_timer(500, [(update, [text], {})])\ntimer.start()\nplt.show()\n\nHowever, the following should only update once and then stop:\n\nfig, ax = plt.subplots()\ntext = ax.text(0.5, 0.5, '', ha='center') \ntimer = fig.canvas.new_timer(500, [(update, [text], {})])\n\ntimer.single_shot = True\ntimer.start()\n\nplt.show()\n\nAnd the next two examples should never show any visible text at all:\n\nfig, ax = plt.subplots()\ntext = ax.text(0.5, 0.5, '', ha='center')\ntimer = fig.canvas.new_timer(500, [(update, [text], {})])\n\ntimer.start()\ntimer.stop()\n\nplt.show()\n\n\nfig, ax = plt.subplots()\ntext = ax.text(0.5, 0.5, '', ha='center')\ntimer = fig.canvas.new_timer(500, [(update, [text], {})])\n\ntimer.single_shot = True\ntimer.start()\ntimer.stop()\n\nplt.show()\n\n\n\nUAT 18 - stopping figure when removed from DOM\nWhen the div that contains from the figure is removed from the DOM the figure should shut down it’s comm, and if the python-side figure has no more active comms, it should destroy the figure. Repeatedly running the cell below should always have the same figure number\n\nfig, ax = plt.subplots()\nax.plot(range(5))\nplt.show()\n\nRunning the cell below will re-show the figure. After this, re-running the cell above should result in a new figure number.\n\nfig.canvas.manager.reshow()\n\n\n\nUAT 19 - Blitting\nClicking on the figure should plot a green horizontal line moving up the axes.\n\nimport itertools\n\ncnt = itertools.count()\nbg = None\n\ndef onclick_handle(event):\n    \"\"\"Should draw elevating green line on each mouse click\"\"\"\n    global bg\n    if bg is None:\n        bg = ax.figure.canvas.copy_from_bbox(ax.bbox) \n    ax.figure.canvas.restore_region(bg)\n\n    cur_y = (next(cnt) % 10) * 0.1\n    ln.set_ydata([cur_y, cur_y])\n    ax.draw_artist(ln)\n    ax.figure.canvas.blit(ax.bbox)\n\nfig, ax = plt.subplots()\nax.plot([0, 1], [0, 1], 'r')\nln, = ax.plot([0, 1], [0, 0], 'g', animated=True)\nplt.show()\nax.figure.canvas.draw()\n\nax.figure.canvas.mpl_connect('button_press_event', onclick_handle)"
+  }
+]
