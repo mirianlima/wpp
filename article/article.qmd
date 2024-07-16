@@ -23,7 +23,7 @@ editor_options:
 
 {{< include ../_setup.qmd >}}
 
-<img src="../assets/identifier_color.png" alt="Acronym Logo" style="display: block; margin-left: 0; width: 40%;" />
+<img src="../assets/osaa_logo_color.png" alt="Acronym Logo" style="display: block; margin-left: 0; width: 40%;" />
 
 ::: {.content-visible when-format="html"}
 ::: {.callout-note appearance="simple"}

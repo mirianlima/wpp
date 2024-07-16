@@ -133,6 +133,55 @@
     "text": "Investment Imperative\n\nInsights\n\n\n\nSustained investment in human capital is crucial.\nStrengthening DRM institutions for financial predictability.\nComprehensive national systems in education, health, social security."
   },
   {
+    "objectID": "appendix/data_table.html",
+    "href": "appendix/data_table.html",
+    "title": "Fertility and Fiscal Space",
+    "section": "",
+    "text": "TableCodebook"
+  },
+  {
+    "objectID": "appendix/eda_report.html",
+    "href": "appendix/eda_report.html",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "",
+    "text": "Analyzing the 2022 country-level World Population Prospects (WPP 2022) data to summarize their main characteristics of variables, often with visual graphs, without using a statistical model."
+  },
+  {
+    "objectID": "appendix/eda_report.html#overview-of-the-data",
+    "href": "appendix/eda_report.html#overview-of-the-data",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Overview of the data",
+    "text": "Overview of the data\nUnderstanding the dimensions of the data set, variable names, overall missing summary and data types of each variable.\n\nSummary of the data\nThe initial overview provides a summary of the dataset’s dimensions and the types of variables it contains. This includes the number of rows and columns, the types of variables (numeric, factor, text, etc.), and the percentage of complete cases.\n\n\n\n\n\n\n\n\nStructure of the data\nThis section delves deeper into the structure of the data, detailing each variable’s type, the number of samples, missing values, and the percentage of missing data.\nThis information is crucial for understanding the overall data quality and identifying potential issues. This allows to evaluate the reliability of subsequent analyses. Each variable’s data type (e.g., numeric, character) is correctly identified, which is essential for appropriate statistical testing and modeling."
+  },
+  {
+    "objectID": "appendix/eda_report.html#summary-of-numerical-variables",
+    "href": "appendix/eda_report.html#summary-of-numerical-variables",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Summary of numerical variables",
+    "text": "Summary of numerical variables\nThis summary provides key statistical measures for all numeric variables, including measures of central tendency (mean, median) and dispersion (standard deviation, interquartile range), as well as skewness and kurtosis to understand the distribution shape.\nThe summary statistics highlight the central tendencies and dispersion of the numeric variables. For instance, variables with high skewness and kurtosis values might indicate outliers or non-normal distributions, which may require transformation or special handling in modeling.\n\ndlookr table summarydlookr five number summariesdataExplorer table summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNumerical summaries by geography\n\nBy regionBy subregion"
+  },
+  {
+    "objectID": "appendix/eda_report.html#distributions-of-numerical-variables",
+    "href": "appendix/eda_report.html#distributions-of-numerical-variables",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Distributions of numerical variables",
+    "text": "Distributions of numerical variables\nGraphical representation of all numeric features\n\nQuantile-quantile plot (Univariate)\nThe quantile-quantile plot helps in assessing whether the numeric variables follow a particular distribution, such as the normal distribution. The Q-Q plots allow us to visually assess the normality of the numeric variables. Deviations from the diagonal line suggest that the data may not be normally distributed, which could impact parametric statistical analyses.\n\n\n$`0`\n\n\n\n\n\n\n\n\n\n\n\nDensity plot (Univariate)\nDensity plots provide a smoothed estimate of the data distribution, allowing for easy visualization of the distribution shape and comparison between different variables.\nDensity plots show the distribution of each numeric variable. Peaks in the density plots indicate modes, and the spread indicates variability. These plots help in understanding the distribution and identifying any potential skewness or multimodality.\n\n\n$`0`\n\n\n\n\n\n\n\n\n\n\n\nScatter plot (Bivariate)\nScatter plots are used to explore the relationship between pairs of numeric variables, helping in identifying potential correlations or patterns. Positive or negative trends can indicate correlations. Outliers and patterns in these plots provide insights into the data structure and potential interactions between variables.\n\n\n$`0`"
+  },
+  {
+    "objectID": "appendix/eda_report.html#summary-of-categorical-variables",
+    "href": "appendix/eda_report.html#summary-of-categorical-variables",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Summary of categorical variables",
+    "text": "Summary of categorical variables\nSummary statistics for categorical variables provide information on the frequency and proportion of each category within the variable.\n\nFrequency for all categorical independent variables\nThis section provides a frequency table for all categorical variables, showing the count and percentage of each category within the variable. The frequency tables indicate how often each category occurs in the dataset. This is crucial for understanding the distribution of categorical variables and identifying any categories that might dominate or be underrepresented."
+  },
+  {
+    "objectID": "appendix/eda_report.html#distributions-of-categorical-variables",
+    "href": "appendix/eda_report.html#distributions-of-categorical-variables",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Distributions of categorical variables",
+    "text": "Distributions of categorical variables\nBar plots for all categorical variables visualize the distribution of categories within each variable, making it easy to see which categories are most or least common.\n\nBar plots with vertical or horizontal bars for all categorical variables\nThe following section identifies and visualizes categorical variables with fewer than 11 unique values using bar plots. This is particularly useful for variables with a manageable number of categories.\nBar plots provide a visual representation of the categorical variables’ distributions. This helps in quickly identifying the most and least common categories. Such visualizations are useful for understanding the data’s structure and for subsequent analyses like feature selection.\n\nby Regionby Income Levelby LDC statusIncome by region statsLDC status by region stats"
+  },
+  {
     "objectID": "dashboard/dashboard.html",
     "href": "dashboard/dashboard.html",
     "title": "Dashboard",
