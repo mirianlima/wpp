@@ -9,13 +9,14 @@ execute:
   warning: false
   # cache: true
 format:
-  html:
+  html: 
     grid: 
       body-width: 1200px
     code-tools: true
     fig-width: 10
     fig-height: 6 
     fig-align: center
+  pdf: default
 mainfont: Roboto
 editor_options: 
   chunk_output_type: console

@@ -36,7 +36,7 @@ wpp <- list(
 agg_types <- function(df){
   df |> 
     mutate(
-      across(where(is.numeric), round, 2),
+      across(where(is.numeric), \(x) round(x, 2)),
       across(c(loc_type_id, loc_type_name, parent_id, parent_name, location), as.factor)
     )
 }
@@ -44,7 +44,7 @@ agg_types <- function(df){
 country_types <- function(df){
   df |>
     mutate(
-      across(where(is.numeric), round, 2),
+      across(where(is.numeric), \(x) round(x, 2)),
       across(c(region, region_int, ldc, lldc, sids, income, lending), as.factor)
     )
 }

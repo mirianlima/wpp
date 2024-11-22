@@ -32,7 +32,6 @@ format:
   html:
     fontsize: 1.1em
     theme: 
-      - flatly
-      - styles/main.scss
+      light: [flatly, styles/main.scss]
     toc: true
 

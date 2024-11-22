@@ -784,7 +784,125 @@ topn <- function(var = tfr, years = c(2030, 2060, 2100), n = 10, fill_var = inco
     geom_text(aes(label = round({{var}}, 1)), hjust = -.15) +
     scale_fill_manual(values = osaa_pal$income) +
     labs(y = "", x = "", fill = "") +
-    theme(legend.position = "top")
+    theme(legend.position = "bottom")
 }
 
-topn()
+topn() + labs(title = "Ranking of top 10 Total Fertility Rates")
+topn(var = imr) + labs(title = "Ranking of top 10 Infant Mortality Rates")
+
+########################## 20. lolipop chart (ggbump)
+
+# top_10 <- wpp$countries |>
+#   filter(time == 2030) |> 
+#   slice_max(tfr, n=20) |> 
+#   select(location, iso3_code,tfr)
+
+# ranked <- wpp$countries |> 
+#   filter(time %in% c(2030,2060,2100), income != "", iso3_code %in% top_10$iso3_code) |> 
+#     mutate(ranking = rank(desc(tfr), ties.method = "first"), .by = time) |> 
+#     select(c(iso3_code:time,region:ranking,tfr))
+
+# # Niger, DRC, Nigeria, Senegal
+# selected <- c("NER","COD", "NGA", "SEN")
+
+# ranked |> 
+#   ggplot(aes(x = time, y = ranking, group = location)) +
+#   geom_bump(linewidth = 0.6, color = "gray90", smooth = 6) +
+#   geom_bump(aes(color = location), linewidth = 0.8, smooth = 6,
+#                     data = ~. |> filter(iso3_code %in% selected)) +
+#   geom_point(color = "white", size = 4) +
+#   geom_point(color = "gray90", size = 2) +
+#   geom_point(aes(color = location), size = 2, 
+#               data = ~. |> filter(iso3_code %in% selected)) +
+#   geom_text(aes(label = location), x = 2102, hjust = 0,
+#             color = "gray50", family = "Roboto Condensed", size = 3.5,
+#             data = ranked |> slice_max(time, by = location) |> 
+#               filter(!iso3_code %in% selected)) +
+#   geom_text(aes(label = location), x = 2102, hjust = 0,
+#             color = "black", family = "Roboto Condensed", size = 3.5,
+#             data = ranked |> slice_max(time, by = location) |> 
+#               filter(iso3_code %in% selected)) +
+#   scale_color_manual(values = met.brewer("Juarez")) +
+#   scale_x_continuous(limits = c(2029.8, 2145), expand = c(0.01,0),
+#                       breaks = c(2030, 2060, 2100)) +
+#   scale_y_reverse(breaks = c(20,15,10,5,1), expand = c(0.02,0),
+#                   labels = number_format(prefix = "nº ")) +
+#   theme_minimal(base_family = "Roboto Condensed", base_size = 12) +
+#   theme(legend.position = "none",
+#         panel.grid = element_blank(),
+#         plot.title.position = "plot",
+#         plot.title = element_text(size = 14, hjust = .5),
+#         plot.subtitle = element_text(size = 10, hjust = .5, margin=margin(0,0,20,0)),
+#         plot.caption = element_markdown(size = 8, margin=margin(20,0,0,0))) +
+#   labs(
+#     x = NULL, 
+#     y = NULL,
+#     title = toupper("TFR Ranking"),
+#     subtitle = "Ranking evolution of top 20 countries in 2030",
+#     caption = caption_wpp)
+
+library(ggbump)
+library(MetBrewer)
+
+ranking_bump <- function(
+  var=tfr, 
+  name=" total fertility rate",
+  years = c(2030, 2060, 2100), 
+  # Niger, DRC, Nigeria, Senegal
+  iso3 = c("NER","COD", "NGA", "SEN")){
+
+selected <- iso3
+  
+top_10 <- wpp$countries |>
+  filter(time == min(years)) |> 
+  slice_max({{var}}, n=20) |> 
+  select(location, iso3_code, {{var}})
+
+ranked <- wpp$countries |> 
+  filter(time %in% years, iso3_code %in% top_10$iso3_code) |> 
+    mutate(ranking = rank(desc({{var}}), ties.method = "first"), .by = time) |> 
+    select(c(time, ranking, location, iso3_code, {{var}}))
+
+ranked |>
+  ggplot(aes(x = time, y = ranking, group = location)) +
+  geom_bump(linewidth = 0.6, color = "gray90", smooth = 6) +
+  geom_bump(aes(color = location), linewidth = 0.8, smooth = 6,
+                    data = ~. |> filter(iso3_code %in% selected)) +
+  geom_point(color = "white", size = 4) +
+  geom_point(color = "gray90", size = 2) +
+  geom_point(aes(color = location), size = 2, 
+              data = ~. |> filter(iso3_code %in% selected)) +
+  geom_text(aes(label = location), x = max(years)+2, hjust = 0,
+            color = "gray50", family = "Roboto Condensed", size = 3.5,
+            data = ranked |> slice_max(time, by = location) |> 
+              filter(!iso3_code %in% selected)) +
+  geom_text(aes(label = location), x = max(years)+2, hjust = 0,
+            color = "black", family = "Roboto Condensed", size = 3.5,
+            data = ranked |> slice_max(time, by = location) |> 
+              filter(iso3_code %in% selected)) +
+  scale_color_manual(values = met.brewer("Juarez")) +
+  scale_x_continuous(limits = c(min(years), max(years)+45), expand = c(0.01,0),
+                      breaks = years) +
+  scale_y_reverse(breaks = c(20,15,10,5,1), expand = c(0.02,0),
+                  labels = number_format(prefix = "nº ")) +
+  theme_minimal(base_family = "Roboto Condensed", base_size = 12) +
+  theme(legend.position = "none",
+        panel.grid = element_blank(),
+        plot.title.position = "plot",
+        plot.title = element_text(size = 14, hjust = .5),
+        plot.subtitle = element_text(size = 10, hjust = .5, margin=margin(0,0,20,0)),
+        plot.caption = element_markdown(size = 8, margin=margin(20,0,0,0))) +
+  labs(
+    x = NULL, 
+    y = NULL,
+    title = toupper(paste0(name," Ranking")),
+    subtitle = "Ranking evolution of top 20 countries in 2030",
+    caption = caption_wpp)
+}
+
+# ARGS: var=tfr, name=" total fertility rate", years = c(2030, 2060, 2100), 
+      # iso3 = c("NER","COD", "NGA", "SEN")
+ranking_bump()
+ranking_bump(var = imr, name = "infant mortality rate")
+ranking_bump(years = c(seq(2030,2100,10)))
+ranking_bump(years = c(2030,2060))
