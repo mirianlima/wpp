@@ -21,6 +21,4 @@ myenv/
 .DS_Store
 Thumbs.db
 
-# Exclude individual files
-*.html
-*.pdf
+
